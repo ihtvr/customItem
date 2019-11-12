@@ -3,10 +3,6 @@ package com.fangliju.commonitems;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
-import android.support.annotation.NonNull;
-import android.support.constraint.ConstraintLayout;
-import android.support.v7.widget.AppCompatCheckBox;
-import android.support.v7.widget.SwitchCompat;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.TypedValue;
@@ -16,6 +12,12 @@ import android.view.ViewGroup;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.widget.AppCompatCheckBox;
+import androidx.appcompat.widget.SwitchCompat;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.constraintlayout.widget.ConstraintSet;
 
 public class ItemSingle extends ConstraintLayout {
 
@@ -47,7 +49,7 @@ public class ItemSingle extends ConstraintLayout {
         this.dividerBottomMarginRight = builder.dividerBottomMarginRight;
         this.rightViewType = builder.rightViewType;
         this.rightViewChecked = builder.rightViewChecked;
-
+        this.defaultMargin = Tools.dip2px(mContext, defaultMargin);
         initView();
     }
 
@@ -145,8 +147,10 @@ public class ItemSingle extends ConstraintLayout {
 
     private void initItemSingle() {
         this.setEnabled(clickable);
-        if (drawable_bg != null)
-            this.setBackgroundDrawable(drawable_bg);
+        this.setId(R.id.clItem);
+        if (drawable_bg == null)
+            drawable_bg = mContext.getResources().getDrawable(R.drawable.ripple_item_write);
+        this.setBackground(drawable_bg);
         if (mLayoutParams != null)
             this.setLayoutParams(mLayoutParams);
         this.setOnClickListener(new OnClickListener() {
@@ -216,10 +220,16 @@ public class ItemSingle extends ConstraintLayout {
                 tv_bottom_line = setDividers(dividerBottomMarginLeft, dividerBottomMarginRight, DIVIDERS_BOTTOM);
                 break;
         }
-        if (tv_top_line != null)
+        if (tv_top_line != null) {
+            tv_top_line.setId(R.id.tvTopLine);
             addView(tv_top_line);
-        if (tv_bottom_line != null)
+        }
+
+        if (tv_bottom_line != null) {
+            tv_bottom_line.setId(R.id.tvBottomLine);
             addView(tv_bottom_line);
+        }
+
     }
 
 
@@ -256,6 +266,7 @@ public class ItemSingle extends ConstraintLayout {
     private void initSwitch() {
         if (switchCompat == null)
             switchCompat = new SwitchCompat(mContext);
+        switchCompat.setId(R.id.switchCompat);
         ConstraintLayout.LayoutParams params = new ConstraintLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
         params.setMargins(0, 0, defaultMargin, 0);
         params.topToTop = getTop();
@@ -277,6 +288,7 @@ public class ItemSingle extends ConstraintLayout {
     private void initCheckBox() {
         if (checkBox == null)
             checkBox = new AppCompatCheckBox(mContext);
+        checkBox.setId(R.id.checkBox);
         ConstraintLayout.LayoutParams params = new ConstraintLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
         params.setMargins(0, 0, defaultMargin, 0);
         params.topToTop = getTop();
@@ -287,7 +299,8 @@ public class ItemSingle extends ConstraintLayout {
         checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                switchCheckedChangeListener.onCheckedChangeListener(buttonView, isChecked);
+                if (switchCheckedChangeListener != null)
+                    switchCheckedChangeListener.onCheckedChangeListener(buttonView, isChecked);
             }
         });
         addView(checkBox);
@@ -313,19 +326,13 @@ public class ItemSingle extends ConstraintLayout {
     }
 
     private void initConstraint() {
-        LayoutParams tvLeftParams =
-        tvLeftParams.rightToLeft = R.id.tvRight;
-        tv_left.setLayoutParams(tvLeftParams);
-
-        LayoutParams tvRightParams = (LayoutParams) tv_right.getLayoutParams();
-        tvRightParams.leftToRight = R.id.tvLeft;
-        if (iv_right != null) {
-            tvRightParams.rightToLeft = R.id.ivRight;
-        } else {
-            tvRightParams.rightToRight = getRight();
-        }
-
-        tv_right.setLayoutParams(tvLeftParams);
+        ConstraintSet constraintSet = new ConstraintSet();
+        constraintSet.clone(this);
+        constraintSet.connect(R.id.tvLeft, ConstraintSet.RIGHT, R.id.tvRight, ConstraintSet.LEFT, Tools.dip2px(mContext, 10));
+        constraintSet.connect(R.id.tvRight, ConstraintSet.LEFT, R.id.tvLeft, ConstraintSet.RIGHT);
+        if (drawable_right != null)
+            constraintSet.connect(R.id.tvRight, ConstraintSet.RIGHT, R.id.ivRight, ConstraintSet.LEFT);
+        constraintSet.applyTo(this);
     }
 
 

@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <item name="clItem" type="id" />
     <item name="tvLeft" type="id" />
     <item name="tvRight" type="id" />
     <item name="ivRight" type="id" />
+    <item name="tvTopLine" type="id" />
+    <item name="tvBottomLine" type="id" />
+    <item name="switchCompat" type="id" />
+    <item name="checkBox" type="id" />
 </resources>

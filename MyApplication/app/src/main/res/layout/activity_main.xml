@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!--<com.fangliju.commonitems.ItemSingle-->
-        <!--android:id="@+id/is_item"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="50dp"-->
-        <!--app:dividers_bottom_margin_left="15dp"-->
-        <!--app:dividers_type="none"-->
-        <!--app:layout_constraintLeft_toLeftOf="parent"-->
-        <!--app:layout_constraintRight_toRightOf="parent"-->
-        <!--app:layout_constraintTop_toTopOf="parent"-->
-        <!--app:left_text="左边呀"-->
-        <!--app:left_text_color="@android:color/holo_red_light"-->
-        <!--app:right_text_color="@android:color/holo_blue_dark"-->
-        <!--app:right_view_checked="true"-->
-        <!--app:right_view_type="checkBox" />-->
+    <com.fangliju.commonitems.ItemSingle
+        android:id="@+id/clItem"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        app:dividers_bottom_margin_left="15dp"
+        app:dividers_type="none"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:left_text="左边呀"
+        app:left_text_color="@android:color/holo_red_light"
+        app:right_text_color="@android:color/holo_blue_dark"
+        app:right_view_checked="true"
+        app:right_view_type="checkBox" />
 
     <LinearLayout
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/clItem"
         android:id="@+id/ll_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -28,4 +28,4 @@
         android:orientation="vertical" />
 
 
-</android.support.constraint.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
