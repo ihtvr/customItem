@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="tvLeft" type="id" />
+    <item name="tvRight" type="id" />
+    <item name="ivRight" type="id" />
+</resources>

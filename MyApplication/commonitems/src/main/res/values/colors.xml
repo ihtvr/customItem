@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="text_color">#000000</color>
+    <!-- 白色 -->
+    <color name="white_color">#ffffff</color>
+    <color name="state_pressed">#dfdfdf</color>  <!--白色背景按下去的颜色-->
+    <color name="state_enabled">#b1b4c1</color>  <!--白色背景禁用的颜色-->
+    <color name="line">#e5e5e5</color>
+</resources>

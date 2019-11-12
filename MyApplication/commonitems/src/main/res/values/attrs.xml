@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="ItemSingle">
+        <attr name="item_bg" format="reference" />
+        <attr name="item_clickable" format="boolean" />
+        <attr name="left_text" format="string|reference" />
+        <attr name="left_text_color" format="color" />
+        <attr name="left_text_size" format="dimension" />
+        <attr name="right_text" format="string|reference" />
+        <attr name="right_hint" format="string|reference" />
+        <attr name="right_text_color" format="color" />
+        <attr name="right_text_size" format="dimension" />
+        <attr name="dividers_type">
+            <enum name="none" value="0" />
+            <enum name="top" value="1" />
+            <enum name="bottom" value="2" />
+            <enum name="both" value="3" />
+        </attr>
+        <attr name="dividers_color" format="color" />
+        <attr name="dividers_height" format="dimension" />
+        <attr name="dividers_top_margin_left" format="dimension" />
+        <attr name="dividers_top_margin_right" format="dimension" />
+        <attr name="dividers_bottom_margin_left" format="dimension" />
+        <attr name="dividers_bottom_margin_right" format="dimension" />
+
+        <attr name="right_img" format="reference" />
+        <attr name="right_view_type">
+            <enum name="switchBtn" value="0" />
+            <enum name="checkBox" value="1" />
+
+        </attr>
+        <attr name="right_view_checked" format="boolean" />
+    </declare-styleable>
+</resources>
